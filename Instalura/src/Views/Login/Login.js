@@ -12,7 +12,7 @@ import AsyncStorage from "@react-native-community/async-storage"
 
 
 
-const Login = () => {
+const Login = ({navigation}) => {
   const[usuario,setUsuario] = useState("");
   const[senha,setSenha]= useState("");
   const[mensagemErro,setmensagemErro]=useState("")
@@ -23,6 +23,8 @@ const Login = () => {
     try{
       const token =  await efetuarLogin(usuario,senha);
       await AsyncStorage.setItem("instalura_token",token);
+      navigation.push("Feed")
+
     }catch(erro){
       setmensagemErro(erro.message)
     }
