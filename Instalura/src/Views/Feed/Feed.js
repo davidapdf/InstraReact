@@ -17,12 +17,9 @@ const Feed = () => {
   useEffect(()=>{
     lerFotos(setFotos);
   },[])
-  let altura = 0;
-  if(Platform.OS =="ios"){
-    altura = 35;
-  }
+ 
   return (
-    <ScrollView style={{marginTop:altura}}>
+    <ScrollView>
       <StatusBar 
         backgroundColor="white"
         barStyle="dark-content"/>
@@ -49,6 +46,15 @@ const Feed = () => {
   )
 };
 
+Feed.navigationOptions =({navigation}) =>{
+  const opcoes ={
+    title:navigation.getParam("nome")
+  }
+  if(Platform.OS=="android"){
+    opcoes.header = null
+  }
+  return opcoes
+}
 
 
 export default Feed;

@@ -4,6 +4,7 @@ Text,
 TextInput,
 Button,
 View,
+Platform,
 //AsyncStorage
 } from "react-native";
 import estilo from './estilo';
@@ -23,7 +24,7 @@ const Login = ({navigation}) => {
     try{
       const token =  await efetuarLogin(usuario,senha);
       await AsyncStorage.setItem("instalura_token",token);
-      navigation.push("Feed")
+      navigation.replace("Feed",{nome : usuario})
 
     }catch(erro){
       setmensagemErro(erro.message)
@@ -58,6 +59,14 @@ const Login = ({navigation}) => {
   )
 };
 
-
+Login.navigationOptions =() =>{
+  const opcoes ={
+    title:"Login"
+  }
+  if(Platform.OS=="android"){
+    opcoes.header = null
+  }
+  return opcoes
+}
 
 export default Login;
