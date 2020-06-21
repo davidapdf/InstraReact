@@ -7,12 +7,14 @@ import {
 } from "react-native"
 
 import estilo from './estilo';
-import { curtirFoto, imgLike } from '../../../api/curtidas';
 
-
-
-
-const Foto = ({urlFoto,descricao, qntLikes}) => {
+const Foto = ({
+  urlFoto,
+  descricao, 
+  qntLikes,
+  curtirFoto,
+  imgLike}) => {
+    
   const [curtiu,setCurtiu] = useState(false);
   const [likes,setLikes] = useState(qntLikes)
 
